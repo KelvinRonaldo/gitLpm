@@ -1,0 +1,8 @@
+GIT
+git status ? status do repositório atual
+git init ? tornar repositorio atual em um repositorio git
+pwd ? mostra pasta atual
+
+LINUX
+ls ? mostra conteúdo do repositorio
+ls -l ? mostra conteúdo detalhado
