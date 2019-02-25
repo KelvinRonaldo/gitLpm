@@ -55,4 +55,9 @@ public class Contato {
     public void setLinkedin(String linkedin) {
         this.linkedin = linkedin;
     }
+
+    @Override
+    public String toString() {
+        return this.nome + "-" + this.linkedin;
+    }
 }

@@ -14,7 +14,7 @@ import br.senai.sp.modelo.Contato;
 public class ContatoDAO extends SQLiteOpenHelper {
 
     public ContatoDAO(Context context) {
-        super(context, "db_agenda_contato", null, 1);
+        super(context, "db_agenda_contato", null, 2);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
                 "endereco TEXT NOT NULL," +
                 "telefone TEXT NOT NULL," +
                 "email TEXT NOT NULL," +
-                "linkedin TEXT NOT NULL," +
+                "linkedin TEXT NOT NULL" +
                 ");";
 
         db.execSQL(sql);
@@ -49,14 +49,14 @@ public class ContatoDAO extends SQLiteOpenHelper {
         dados.put("email",  contato.getEmail());
         dados.put("linkedin",  contato.getLinkedin());
 
-        db.insert("tbl_contato", null, dados);
+        db.insert("tbl_contatos", null, dados);
 
     }
 
     public List<Contato> getContatos(){
 
         SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT * FROM tbl_contato";
+        String sql = "SELECT * FROM tbl_contatos";
         Cursor c = db.rawQuery(sql, null);
 
         List<Contato> contatos = new ArrayList<>();
