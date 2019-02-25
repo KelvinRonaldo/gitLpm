@@ -1,0 +1,46 @@
+package br.senai.sp.agendacontatos;
+
+import android.widget.EditText;
+
+import br.senai.sp.modelo.Contato;
+
+public class CadastroContatoHelper {
+    private EditText txtNome;
+    private EditText txtEndereco;
+    private EditText txtTelefone;
+    private EditText txtEmail;
+    private EditText txtLinkedin;
+
+    public CadastroContatoHelper(CadastroContatos activity){
+        txtNome = activity.findViewById(R.id.txt_nome);
+        txtEndereco = activity.findViewById(R.id.txt_endereco);
+        txtTelefone = activity.findViewById(R.id.txt_telefone);
+        txtEmail = activity.findViewById(R.id.txt_email);
+        txtLinkedin = activity.findViewById(R.id.txt_linkedin);
+    }
+
+    public Contato getContato(){
+        Contato contato = new Contato();
+        contato.setNome(txtNome.getText().toString());
+        contato.setEndereco(txtEndereco.getText().toString());
+        contato.setTelefone(txtTelefone.getText().toString());
+        contato.setEmail(txtEmail.getText().toString());
+        contato.setLinkedin(txtLinkedin.getText().toString());
+
+        return contato;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,8 +13,9 @@ q ? sai do resultado do log
 git remote ? ver ropositorio remoto
 git remote add 'origin' "link" ? define qual é o seu repositorio remoto
 		? pode ser qualquer nome, mas origin é o recomendado
-git push origin master ? dar push no do meu 'origin' para o 'master' do github
-git config http.sslVerify false ? não fazer verificacção de ssl
+git push origin master ? dar push no do meu 'origin' para o 'master' do remoto
+git pull origin master ? dar pull no do meu 'origin' para o 'master' do remoto
+git config http.sslVerify false ? não fazer verificacção de ssl (desabilita criptografia)
 git config https.sslVerify false ? "
 
 LINUX
