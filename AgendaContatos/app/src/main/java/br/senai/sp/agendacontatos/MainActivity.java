@@ -3,7 +3,11 @@ package br.senai.sp.agendacontatos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -35,11 +39,22 @@ public class MainActivity extends AppCompatActivity {
 //                "Amanda", "Ananda","Kelvin", "Sabrina", "Lohany", "Felipe", "Fernando",
 //                "Amanda", "Ananda"};
 
+        registerForContextMenu(listaContatos);
+
         botaoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CadastroContatos.class);
                 startActivity(intent);
+            }
+        });
+        listaContatos.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Contato contato = (Contato) listaContatos.getItemAtPosition(position);
+                Intent abrirCadastro = new Intent(MainActivity.this, CadastroContatos.class);
+                abrirCadastro.putExtra("contato", contato);
+                startActivity(abrirCadastro);
             }
         });
 
@@ -49,6 +64,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_contexto_lista, menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Contato contato = (Contato) listaContatos.getItemAtPosition(info.position);
+        ContatoDAO dao = new ContatoDAO(MainActivity.this);
+
+        dao.excluir(contato);
+        Toast.makeText(this, contato.getNome() + " excluído com sucesso!", Toast.LENGTH_SHORT).show();
+        dao.close();
+        carregarLista();
+
+        return super.onContextItemSelected(item);
+    }
+
 
     @Override
     protected void onResume() {

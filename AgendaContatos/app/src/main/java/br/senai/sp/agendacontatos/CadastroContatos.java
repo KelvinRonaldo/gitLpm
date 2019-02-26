@@ -1,5 +1,6 @@
 package br.senai.sp.agendacontatos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,17 @@ public class CadastroContatos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_contatos);
         helper = new CadastroContatoHelper(this);
+
+        Intent intent = getIntent();
+        Contato contato = (Contato) intent.getSerializableExtra("contato");
+
+        if(contato == null){
+            Toast.makeText(this, "Nada", Toast.LENGTH_SHORT).show();
+        }else{
+            helper.preencherCampos(contato);
+        }
+
+
     }
 
     @Override
@@ -34,14 +46,27 @@ public class CadastroContatos extends AppCompatActivity {
             case R.id.item_pronto:
                 Contato contato = helper.getContato();
                 ContatoDAO dao = new ContatoDAO(this);
-                dao.salvar(contato);
-                dao.close();
 
-                Toast.makeText(this, contato.getNome() + " gravado coom sucesso!", Toast.LENGTH_SHORT).show();
+                if(item.getItemId() == 0){
+                    dao.salvar(contato);
+                    dao.close();
+                    Toast.makeText(this, contato.getNome() + " gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else{
+                    dao.atualizar(contato);
+                    dao.close();
+                    Toast.makeText(this, contato.getNome() + " atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
 
                 break;
             case R.id.item_excluir:
-                Toast.makeText(CadastroContatos.this, "Excluir", Toast.LENGTH_SHORT).show();
+                contato = helper.getContato();
+                dao = new ContatoDAO(this);
+                dao.excluir(contato);
+                dao.close();
+
+                Toast.makeText(this, contato.getNome() + " excluído com sucesso!", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

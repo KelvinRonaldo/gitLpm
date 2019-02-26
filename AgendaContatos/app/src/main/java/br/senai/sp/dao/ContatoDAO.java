@@ -42,12 +42,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues dados = new ContentValues();
-        dados.put("nome",  contato.getNome());
-        dados.put("endereco",  contato.getEndereco());
-        dados.put("telefone",  contato.getTelefone());
-        dados.put("email",  contato.getEmail());
-        dados.put("linkedin",  contato.getLinkedin());
+        ContentValues dados = getContentValues(contato);
 
         db.insert("tbl_contatos", null, dados);
 
@@ -63,6 +58,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
 
         while (c.moveToNext()){
             Contato contato = new Contato();
+            contato.setId(c.getInt(c.getColumnIndex("id")));
             contato.setNome(c.getString(c.getColumnIndex("nome")));
             contato.setEndereco(c.getString(c.getColumnIndex("endereco")));
             contato.setTelefone(c.getString(c.getColumnIndex("telefone")));
@@ -71,6 +67,38 @@ public class ContatoDAO extends SQLiteOpenHelper {
             contatos.add(contato);
         }
         return contatos;
+    }
+
+    public void excluir(Contato contato){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] params = {String.valueOf(contato.getId())};
+
+        db.delete("tbl_contatos", "id = ? ", params);
+    }
+
+    public void atualizar(Contato contato){
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] params = {String.valueOf(contato.getId())};
+
+        ContentValues dados = getContentValues(contato);
+
+        db.update("tbl_contatos", dados, "id = ?", params);
+
+    }
+
+    public ContentValues getContentValues(Contato contato){
+
+        ContentValues dados = new ContentValues();
+        dados.put("nome",  contato.getNome());
+        dados.put("endereco",  contato.getEndereco());
+        dados.put("telefone",  contato.getTelefone());
+        dados.put("email",  contato.getEmail());
+        dados.put("linkedin",  contato.getLinkedin());
+
+        return dados;
     }
 }
 
