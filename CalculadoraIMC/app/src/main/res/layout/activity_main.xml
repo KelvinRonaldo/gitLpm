@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TAMANHOS(dp[view] e sp[fonte]) vão de 8 em 8(8. 16, 32...)-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:layout_marginTop="24dp">
+
+    <!--android:id = determinar ID para a view-->
+    <EditText
+        android:id="@+id/txt_peso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Peso"
+        android:layout_marginBottom="16dp"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/txt_altura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Altura"
+        android:inputType="numberDecimal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="16dp">
+        <!--texto de botão é sempre em letras maiúsculas-->
+
+        <Button
+            android:id="@+id/btn_calcular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CALCULAR"
+            android:background="@color/colorGreen"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/btn_limpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIMPAR"
+            android:background="@color/colorOrange"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBlue">
+
+        <!--NO RELATIVE LAYOUT É MELHOR COLOCAR OS ALINHAMENTOS(layout_centerHorizontal) INDIVIDUALMENTE-->
+        <TextView
+            android:id="@+id/view_imc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="29.5"
+            android:textSize="48sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"/>
+
+        <!--no relative layout, para posicionar as view, tem que dar um ID para a view referência e dizer que lado o elemento deve ficar(below, toRightOf, toLeftOf...-->
+        <TextView
+            android:id="@+id/view_imc_resultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:layout_below="@+id/view_imc"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/view_resumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Você não esta gordo!"
+            android:textColor="@color/colorWhite"
+            android:layout_below="@+id/view_imc_resultado"
+            android:layout_centerHorizontal="true"
+            android:textSize="15sp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
