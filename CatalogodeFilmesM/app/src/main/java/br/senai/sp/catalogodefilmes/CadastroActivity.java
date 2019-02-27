@@ -49,6 +49,8 @@ public class CadastroActivity extends AppCompatActivity {
             case R.id.menu_salvar:
                 Filme filme = helper.getFilme();
 
+                Toast.makeText(this, filme.getId() + " tatata!", Toast.LENGTH_SHORT).show();
+
                 FilmeDAO dao = new FilmeDAO(this);
 
                 if(filme.getId() == 0){
