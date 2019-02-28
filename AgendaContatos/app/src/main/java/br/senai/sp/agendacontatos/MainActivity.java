@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder confirmarExclusao = new AlertDialog.Builder(this);
         confirmarExclusao.setTitle("EXCLUIR CONTATO");
-        confirmarExclusao.setMessage("Tem certer de que deseja excluir " + contato.getNome() + "?");
+        confirmarExclusao.setMessage("Tem certeza de que deseja excluir " + contato.getNome() + "?");
         confirmarExclusao.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
