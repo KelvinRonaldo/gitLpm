@@ -1,9 +1,12 @@
 package br.senai.sp.agendacontatos;
 
+import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.senai.sp.modelo.Contato;
+import br.senai.sp.utils.ValidacaoLetraNum;
 
 public class CadastroContatoHelper {
     private EditText txtNome;
@@ -54,14 +57,14 @@ public class CadastroContatoHelper {
         txtLinkedin.setText(contato.getLinkedin());
         this.contato = contato;
     }
-    public boolean validar(){
-        boolean validado = true;
+    public boolean validarVazio(Context activity){
+        boolean vazioValidado = true;
         String vazio = "Preencha este campos para fazer o cadastro!";
 
         if(txtNome.getText().toString().isEmpty()){
             layoutNome.setErrorEnabled(true);
             layoutNome.setError(vazio);
-            validado = false;
+            vazioValidado = false;
         }else{
             layoutNome.setErrorEnabled(false);
         }
@@ -69,7 +72,7 @@ public class CadastroContatoHelper {
         if(txtEndereco.getText().toString().isEmpty()){
             layoutEndereco.setErrorEnabled(true);
             layoutEndereco.setError(vazio);
-            validado = false;
+            vazioValidado = false;
         }else{
             layoutEndereco.setErrorEnabled(false);
         }
@@ -77,7 +80,7 @@ public class CadastroContatoHelper {
         if(txtTelefone.getText().toString().isEmpty()){
             layoutTelefone.setErrorEnabled(true);
             layoutTelefone.setError(vazio);
-            validado = false;
+            vazioValidado = false;
         }else{
             layoutTelefone.setErrorEnabled(false);
         }
@@ -85,7 +88,7 @@ public class CadastroContatoHelper {
         if(txtEmail.getText().toString().isEmpty()){
             layoutEmail.setErrorEnabled(true);
             layoutEmail.setError(vazio);
-            validado = false;
+            vazioValidado = false;
         }else{
             layoutEmail.setErrorEnabled(false);
         }
@@ -93,16 +96,68 @@ public class CadastroContatoHelper {
         if(txtLinkedin.getText().toString().isEmpty()){
             layoutLinkedin.setErrorEnabled(true);
             layoutLinkedin.setError(vazio);
-            validado = false;
+            vazioValidado = false;
         }else{
             layoutLinkedin.setErrorEnabled(false);
         }
 
-
-        return validado;
+        return vazioValidado;
     }
 
+    public boolean validarCaracter(Context activity){
+        boolean caracterValidado = true;
+        String invalido = "Caractére(s) inválido(s) inserido(s) neste campos!";
 
+        ValidacaoLetraNum validacao = new ValidacaoLetraNum();
+
+        String nome = txtNome.getText().toString();
+        String endereco = txtEndereco.getText().toString();
+        String telefone = txtTelefone.getText().toString();
+        String email = txtEmail.getText().toString();
+        String linkedin = txtLinkedin.getText().toString();
+
+        if(validacao.verificarLetra(activity, nome)){
+            layoutNome.setErrorEnabled(true);
+            layoutNome.setError(invalido);
+            caracterValidado = false;
+        }else{
+            layoutNome.setErrorEnabled(false);
+        }
+
+        if(validacao.verificarLetra(activity, endereco)){
+            layoutEndereco.setErrorEnabled(true);
+            layoutEndereco.setError(invalido);
+            caracterValidado = false;
+        }else{
+            layoutEndereco.setErrorEnabled(false);
+        }
+
+        if(validacao.verificarDigito(activity, telefone)){
+            layoutTelefone.setErrorEnabled(true);
+            layoutTelefone.setError(invalido);
+            caracterValidado = false;
+        }else{
+            layoutTelefone.setErrorEnabled(false);
+        }
+
+        if(validacao.verificarLetra(activity, email)){
+            layoutEmail.setErrorEnabled(true);
+            layoutEmail.setError(invalido);
+            caracterValidado = false;
+        }else{
+            layoutEmail.setErrorEnabled(false);
+        }
+
+        if(validacao.verificarLetra(activity, linkedin)){
+            layoutLinkedin.setErrorEnabled(true);
+            layoutLinkedin.setError(invalido);
+            caracterValidado = false;
+        }else{
+            layoutLinkedin.setErrorEnabled(false);
+        }
+
+        return caracterValidado;
+    }
 }
 
 

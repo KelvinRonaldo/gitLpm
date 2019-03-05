@@ -1,5 +1,6 @@
 package br.senai.sp.agendacontatos;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import br.senai.sp.dao.ContatoDAO;
 import br.senai.sp.modelo.Contato;
+import br.senai.sp.utils.CaixaDeDialogo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder confirmarExclusao = new AlertDialog.Builder(this);
         confirmarExclusao.setTitle("EXCLUIR CONTATO");
+        confirmarExclusao.setMessage("Tem certer de que deseja excluir " + contato.getNome() + "?");
         confirmarExclusao.setMessage("Tem certeza de que deseja excluir " + contato.getNome() + "?");
         confirmarExclusao.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
@@ -95,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         });
         confirmarExclusao.setNegativeButton("Não", null);
         confirmarExclusao.create().show();
+
+//        CaixaDeDialogo d = new CaixaDeDialogo();
+//        d.excluirContato(contato, dao, this);
 
         return super.onContextItemSelected(item);
     }
