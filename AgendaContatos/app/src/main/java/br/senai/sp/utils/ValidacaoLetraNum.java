@@ -8,9 +8,9 @@ public class ValidacaoLetraNum {
     public boolean verificarLetra(Context activity, String elemento){
 
 
-        int numeros = 0;
+       int numeros = 0;
         for(int cont = 0; cont < elemento.length(); cont++){
-            if(Character.isLetter(elemento.charAt(cont))){
+            if(Character.isLetter(elemento.charAt(cont)) || Character.isSpaceChar(elemento.charAt(cont))){
 //               Toast.makeText(activity, "letra"+cont,Toast.LENGTH_SHORT).show();
             }else{
                 numeros++;
@@ -22,7 +22,6 @@ public class ValidacaoLetraNum {
         }else{
             return false;
         }
-
     }
     public boolean verificarDigito(Context activity, String elemento){
 

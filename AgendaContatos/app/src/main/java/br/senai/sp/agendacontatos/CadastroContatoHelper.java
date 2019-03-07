@@ -57,6 +57,7 @@ public class CadastroContatoHelper {
         txtLinkedin.setText(contato.getLinkedin());
         this.contato = contato;
     }
+
     public boolean validarVazio(Context activity){
         boolean vazioValidado = true;
         String vazio = "Preencha este campos para fazer o cadastro!";
@@ -132,28 +133,28 @@ public class CadastroContatoHelper {
             layoutEndereco.setErrorEnabled(false);
         }
 
-        if(validacao.verificarDigito(activity, telefone)){
-            layoutTelefone.setErrorEnabled(true);
-            layoutTelefone.setError(invalido);
-            caracterValidado = false;
-        }else{
-            layoutTelefone.setErrorEnabled(false);
-        }
-
-        if(validacao.verificarLetra(activity, email)){
-            layoutEmail.setErrorEnabled(true);
-            layoutEmail.setError(invalido);
-            caracterValidado = false;
-        }else{
-            layoutEmail.setErrorEnabled(false);
-        }
-
         if(validacao.verificarLetra(activity, linkedin)){
             layoutLinkedin.setErrorEnabled(true);
             layoutLinkedin.setError(invalido);
             caracterValidado = false;
         }else{
             layoutLinkedin.setErrorEnabled(false);
+        }
+
+        if(!email.matches("[0-9a-zA-z._-]+@[a-z]+.[a-z]+")){
+            layoutEmail.setErrorEnabled(true);
+            layoutEmail.setError("oi");
+            caracterValidado = false;
+        }else{
+            layoutEmail.setErrorEnabled(false);
+        }
+
+        if(!telefone.matches("[0-9]{2}[ ]+[0-9]{4}+-[0-9]{4}+")){
+            layoutTelefone.setErrorEnabled(true);
+            layoutTelefone.setError("oi");
+            caracterValidado = false;
+        }else{
+            layoutTelefone.setErrorEnabled(false);
         }
 
         return caracterValidado;
