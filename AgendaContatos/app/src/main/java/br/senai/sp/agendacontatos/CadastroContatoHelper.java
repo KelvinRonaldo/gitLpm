@@ -105,17 +105,17 @@ public class CadastroContatoHelper {
         return vazioValidado;
     }
 
+
     public boolean validarCaracter(Context activity){
         boolean caracterValidado = true;
-        String invalido = "Caractére(s) inválido(s) inserido(s) neste campos!";
+        String invalido = "Caractére(s) inválido(s) inserido(s) neste campo!";
 
         ValidacaoLetraNum validacao = new ValidacaoLetraNum();
 
         String nome = txtNome.getText().toString();
-        String endereco = txtEndereco.getText().toString();
         String telefone = txtTelefone.getText().toString();
+        String endereco = txtEndereco.getText().toString();
         String email = txtEmail.getText().toString();
-        String linkedin = txtLinkedin.getText().toString();
 
         if(validacao.verificarLetra(activity, nome)){
             layoutNome.setErrorEnabled(true);
@@ -125,7 +125,7 @@ public class CadastroContatoHelper {
             layoutNome.setErrorEnabled(false);
         }
 
-        if(validacao.verificarLetra(activity, endereco)){
+        if(!endereco.matches("[à-úÀ-Úa-zA-Z0-9-.,º ]*")){
             layoutEndereco.setErrorEnabled(true);
             layoutEndereco.setError(invalido);
             caracterValidado = false;
@@ -133,25 +133,17 @@ public class CadastroContatoHelper {
             layoutEndereco.setErrorEnabled(false);
         }
 
-        if(validacao.verificarLetra(activity, linkedin)){
-            layoutLinkedin.setErrorEnabled(true);
-            layoutLinkedin.setError(invalido);
-            caracterValidado = false;
-        }else{
-            layoutLinkedin.setErrorEnabled(false);
-        }
-
-        if(!email.matches("[0-9a-zA-z._-]+@[a-z]+.[a-z]+")){
+        if(!email.matches("[0-9a-zA-Z._-]+@[a-z]+([.][a-z]{2,})+")){
             layoutEmail.setErrorEnabled(true);
-            layoutEmail.setError("oi");
+            layoutEmail.setError("Insira um e-mail válido");
             caracterValidado = false;
         }else{
             layoutEmail.setErrorEnabled(false);
         }
 
-        if(!telefone.matches("[0-9]{2}[ ]+[0-9]{4}+-[0-9]{4}+")){
+        if(!telefone.matches("[0-9]{2}[ ]9?[0-9]{4}-[0-9]{4}")){
             layoutTelefone.setErrorEnabled(true);
-            layoutTelefone.setError("oi");
+            layoutTelefone.setError("O Telefone inserido não é valido, siga o exemplo acima.");
             caracterValidado = false;
         }else{
             layoutTelefone.setErrorEnabled(false);
