@@ -23,7 +23,13 @@ public class CadastroContatos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_contatos);
-        helper = new CadastroContatoHelper(this);
+
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+            helper = new CadastroContatoHelper(this);
 
         Intent intent = getIntent();
         Contato contato = (Contato) intent.getSerializableExtra("contato");

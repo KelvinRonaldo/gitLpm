@@ -21,12 +21,13 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/layout_txt_nome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
             <EditText
                 android:id="@+id/txt_nome"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Josias da Silva"
+                android:hint="Ex.: Josias da Silva"
                 android:inputType="text"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -40,12 +41,13 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/layout_txt_endereco"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
             <EditText
                 android:id="@+id/txt_endereco"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Rua Jade, 141, Osasco - SP"
+                android:hint="Ex.: Rua Jade, 141, Osasco - SP"
                 android:inputType="text"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -58,12 +60,13 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/layout_txt_telefone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
             <EditText
                 android:id="@+id/txt_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="XX XXXX-XXXX"
+                android:hint="Ex.: (XX) 0000-0000"
                 android:inputType="phone"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -83,7 +86,7 @@
                 android:id="@+id/txt_email"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="exemplo@exemplo.com.br"
+                android:hint="Ex.: exemplo@exemplo.com.br"
                 android:inputType="textEmailAddress"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -97,12 +100,13 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/layout_txt_linkedin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
             <EditText
                 android:id="@+id/txt_linkedin"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="linkedin.com/in/xxxxxxxxx"
+                android:hint="Ex.: linkedin.com/in/xxxxxxxxx"
                 android:inputType="textUri"/>
 
         </android.support.design.widget.TextInputLayout>
