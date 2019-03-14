@@ -143,7 +143,7 @@ public class CadastroContatoHelper {
 
         if(!telefone.matches("[0-9]{2}[ ]?9?[0-9]{4}-?[0-9]{4}")){
             layoutTelefone.setErrorEnabled(true);
-            layoutTelefone.setError("O Telefone inserido não é valido, siga o exemplo acima.");
+            layoutTelefone.setError("O Telefone inserido não é valido, siga o exemplo acima!");
             caracterValidado = false;
         }else{
             layoutTelefone.setErrorEnabled(false);
