@@ -6,11 +6,13 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,8 +24,8 @@ import br.senai.sp.modelo.Filme;
 
 public class CadastroActivity extends AppCompatActivity {
     private CadastroFilmeHelper helper;
-    private Button btnCamera;
-    private Button btnGaleria;
+    private ImageButton btnCamera;
+    private ImageButton btnGaleria;
     private ImageView imgFilme;
 
     @Override
@@ -74,9 +76,12 @@ public class CadastroActivity extends AppCompatActivity {
 
         InputStream inputStream = null;
         try {
-            inputStream = getContentResolver().openInputStream(data.getData());
-            Bitmap bitmapFactory = BitmapFactory.decodeStream(inputStream);
-            imgFilme.setImageBitmap(bitmapFactory);
+            if(resultCode != 0){
+                Log.d("RETORNO", String.valueOf(resultCode));
+                inputStream = getContentResolver().openInputStream(data.getData());
+                Bitmap bitmapFactory = BitmapFactory.decodeStream(inputStream);
+                imgFilme.setImageBitmap(bitmapFactory);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
