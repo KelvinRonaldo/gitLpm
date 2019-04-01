@@ -79,24 +79,25 @@ public class CadastroContatos extends AppCompatActivity {
                 if(contato.getId() == 0){
                     Toast.makeText(CadastroContatos.this, "Este contato não está cadastrado. Não poder ser excluído!", Toast.LENGTH_SHORT).show();
                 }else{
-                    AlertDialog.Builder confirmarExclusao = new AlertDialog.Builder(this);
-                    confirmarExclusao.setTitle("EXCLUIR CONTATO");
-                    confirmarExclusao.setMessage("Tem certeza de que deseja excluir " + contato.getNome() + "?");
-                    confirmarExclusao.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dao.excluir(contato);
-                            Toast.makeText(CadastroContatos.this, contato.getNome() + "  foi excluído(a)!", Toast.LENGTH_SHORT).show();
-                            dao.close();
-                            finish();
-                        }
-                    });
-                    confirmarExclusao.setNegativeButton("Não", null);
-                    confirmarExclusao.create().show();
+//                    AlertDialog.Builder confirmarExclusao = new AlertDialog.Builder(this);
+//                    confirmarExclusao.setTitle("EXCLUIR CONTATO");
+//                    confirmarExclusao.setMessage("Tem certeza de que deseja excluir " + contato.getNome() + "?");
+//                    confirmarExclusao.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dao.excluir(contato);
+//                            Toast.makeText(CadastroContatos.this, contato.getNome() + "  foi excluído(a)!", Toast.LENGTH_SHORT).show();
+//                            dao.close();
+//                            finish();
+//                        }
+//                    });
+//                    confirmarExclusao.setNegativeButton("Não", null);
+//                    confirmarExclusao.create().show();
 
-//                    CaixaDeDialogo d = new CaixaDeDialogo();
-//                    d.excluirContato(contato, dao, this);
-//                    finish();
+                    CaixaDeDialogo d = new CaixaDeDialogo();
+                    if(d.excluirContato(contato, dao, this)){
+                        finish();
+                    }
                 }
                 break;
         }
